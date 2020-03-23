@@ -1,0 +1,28 @@
+#!/bin/bash
+#!/usr/sbin/useradd
+
+#this is where it takes the file and creates the username and assings password and directory and ultimate creatiion of the user.
+awk -F': ' '{print $1, $2, $3}' TEST2.txt |
+	while read user pass dir; do
+		adduser --home "$dir" "$user"
+		echo "$pass" | passwd "$user" --stdin
+	done
+
+
+
+############### other idea I was trying to make work but to no avail #############
+
+
+#while user pass path;do
+#user="awk -F': ' '{print $1}' TEST2.txt";
+#pass="awk -F': ' '{print $2}' TEST2.txt";
+#path="awk -F': ' '{print $3}' TEST2.txt";
+#useradd -d $path -m $user -p $pass;
+#echo "$path"--"$user"--"$pass"
+
+#done
+
+
+#awk -F ':| ' '{ print("adduser --home", $3, $1"; echo", $2 " | passwd", $1) | "/usr/sbin/useradd" }' TEST2.txt
+
+

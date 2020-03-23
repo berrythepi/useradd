@@ -1,0 +1,5 @@
+#####used to pick the directory and role they will be assigned too.
+/home/admin/
+/home/dev/
+/home/staff/
+/home/temp/

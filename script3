@@ -1,0 +1,76 @@
+#!/bin/bash
+#asks for which file
+echo "enter file name"
+#records input
+read filename
+#assigns the name of the input
+filename=$filename
+IFS=':'
+while read line; do
+	#assings  the role from a seperate list at random
+	ROLES=$( shuf -n 1 roles.txt)
+	#fn is the first name as username
+	fn=$( echo $line | cut -d " " -f1)
+	#random 4 digit number given
+	R=${RANDOM:0:4}
+	#number than first name
+	FINAL=$R$fn
+	PASS=$(pwgen -1 -s 6)
+	#sends username with roles to an output file
+	echo "$FINAL:$PASS:$ROLES" >> /home/TEST2.txt
+	
+
+done < $filename
+
+
+####################BELOW ARE OTHER IDEAS I WAS WORKING WITH###########################
+
+
+#cho "do you want to add users?"
+#read add
+#add=$add
+#IFS=':'
+#while read user pass dir; do
+#awk -F ':| ' '{print $1, $2, $3}' TEST2.txt |
+#while read user pass dir; do
+#	adduser -m -d /home/$dir$user
+#	adduser -D $user | passwd -p $pass #--stdin
+
+#done < $filename 
+#echo "give em one"
+#< $add
+#exit 0
+
+#user=$"awk -F: '{print $1}' TEST2.txt"
+#pass=$"awk -F: '{print $2}' TEST2.txt"
+#path=$"awk -F: '{print $3}' TEST2.txt"
+#useradd="-d $path -m $user -p $pass"
+
+
+
+
+
+
+
+
+
+#if (awk '{print $1}' TEST2.txt | grep -o '0*([0-3])') 
+#'^0*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|1[0-9]{3}|2[0-4][0-9]{2}|2500)$');
+#then
+#	echo "1-25"
+
+#elif (awk '{print $1}' TEST2.txt | grep -o '0*([4-6])') 
+	#'^0*(250[1-9]|25[1-9][0-9]|2[6-9][0-9]{2}|[34][0-9]{3}|5000)$');
+#then
+#	echo "25-5"
+	
+#elif (awk '{print $1}' TEST2.txt | grep -o '0*([7-8])')
+       	
+#'^0*(500[1-9]|50[1-9][0-9]|5[1-9][0-9]{2}|6[0-9]{3}|7[0-4][0-9]{2}|7500)$');
+#then
+#	echo "5-75"
+#else
+
+#	echo "last"
+
+
